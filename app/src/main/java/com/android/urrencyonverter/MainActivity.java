@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int SECOND_SCREEN_REQUEST = 100;
+
     private static final int RUB_IN_USD = 30;
     private static final int RUB_IN_EUR = 40;
     private static final int RUB_IN_CHF = 10;
@@ -28,17 +30,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void openResultScreen() {
         usaOpenSecondButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            final double currency = RUB_IN_USD;
+            Intent intent = new Intent(this, SecondActivity.class);
+            //при открытии второго окна кладем дополнительные значения в формате: ключь, значение.
+            intent.putExtra(ResultActivity.USD_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
             startActivity(intent);
         });
 
         eurOpenSecondButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            final double currency = RUB_IN_EUR;
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra(ResultActivity.EUR_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
             startActivity(intent);
         });
 
         chfOpenSecondButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            final double currency = RUB_IN_CHF;
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra(ResultActivity.CHF_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
             startActivity(intent);
         });
     }
