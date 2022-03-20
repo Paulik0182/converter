@@ -3,31 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activity_standard"
-    tools:context=".SecondActivity">
+    tools:context=".ResultActivity">
 
     <TextView
-        android:id="@+id/result_text_view"
+        android:id="@+id/currency_result_text_view"
         style="@style/color_size_style_light_green"
         android:text="@string/result_conversion"
         tools:ignore="SpUsage" />
 
-    <EditText
-        android:id="@+id/input_edit_text"
-        style="@style/color_size_style_black"
-        android:hint="@string/volute"
-        android:inputType="number"
-        tools:ignore="SpUsage" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/third_open_button"
-        style="@style/button_style_standard"
-        android:text="@string/ok"
-        app:cornerRadius="@dimen/corner_radius_bottom" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/exit_button"
         style="@style/button_style_standard"
-        android:text="@string/exit"
+        android:text="@string/ok"
         app:cornerRadius="@dimen/corner_radius_bottom" />
 
 </LinearLayout>
