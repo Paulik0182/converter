@@ -6,7 +6,7 @@
     tools:context=".SecondActivity">
 
     <TextView
-        android:id="@+id/result_text_view"
+        android:id="@+id/result_second_text_view"
         style="@style/color_size_style_light_green"
         android:text="@string/result_conversion"
         tools:ignore="SpUsage" />
@@ -19,7 +19,7 @@
         tools:ignore="SpUsage" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/third_open_button"
+        android:id="@+id/open_result_button"
         style="@style/button_style_standard"
         android:text="@string/ok"
         app:cornerRadius="@dimen/corner_radius_bottom" />
