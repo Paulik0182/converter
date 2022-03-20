@@ -26,4 +26,9 @@
         <item name="android:textSize">@dimen/result_text_view</item>
     </style>
 
+    <style name="color_size_style_black" parent="color_size_style_light_green">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/volute_edit_text</item>
+    </style>
+
 </resources>
