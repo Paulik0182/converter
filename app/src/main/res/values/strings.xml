@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">СurrencyСonverter</string>
+    <string name="app_name">Конвертация валют</string>
+    <string name="volute">Валюта</string>
+    <string name="result_button">Расчет</string>
+    <string name="result_conversion">рубли</string>
+    <string name="usa">Доллар США</string>
+    <string name="eur">Евро</string>
+    <string name="chf">Юань</string>
+    <string name="exit">Отмена</string>
+    <string name="ok">OK</string>
 </resources>
