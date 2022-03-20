@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 public class SecondActivity extends Activity {
 
+    public static final String USD_CURRENCY_EXTRA_KEY = "USD";
+    public static final String EUR_CURRENCY_EXTRA_KEY = "EUR";
+    public static final String CHF_CURRENCY_EXTRA_KEY = "CHF";
+    public static final String VALUE_EXTRA_KEY = "value";
+
     private TextView resultSecondTextView = null;
     private EditText inputEditText = null;
     private Button okOpenResultButton = null;
@@ -20,6 +25,27 @@ public class SecondActivity extends Activity {
         setContentView(R.layout.activity_second);
         initViews();
         openResultScreen();
+
+        Intent intent = getIntent();//принимаем intent с первого окна
+        //проверка на наличее значений, далее если значение пришли , выполняется код
+
+        if (intent.hasExtra(USD_CURRENCY_EXTRA_KEY) && intent.hasExtra(VALUE_EXTRA_KEY)) {
+            double currency = intent.getDoubleExtra(USD_CURRENCY_EXTRA_KEY, 0d);//принимаем значения
+            double value = intent.getDoubleExtra(VALUE_EXTRA_KEY, 0d);//принимаем значения
+
+            //присвоили переменной результат вычисления в методе convert, передали пришедшие значения в метод convert
+            double result = convert(value, currency);
+
+            Intent intent1 = new Intent(this, ResultActivity.class);
+            //при открытии второго окна кладем дополнительные значения в формате: ключь, значение.
+            intent.putExtra(ResultActivity.RESULT_CURRENCY_EXTRA_KEY, result);//значение - стоимость волюты
+            startActivity(intent1);
+        }
+    }
+
+    //Метод принемающий строку EditText и возващает результат (проходит вычисление)
+    private double convert(double value, double currency) {
+        return value * currency;
     }
 
     //Метод проверки на формат введенного значения в поле EditText
@@ -42,7 +68,7 @@ public class SecondActivity extends Activity {
 
         okOpenResultButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra(ResultActivity.VALUE_EXTRA_KEY, value);//введенное значение в строку EditText - сколько волюты нужно конвертировать
+            intent.putExtra(SecondActivity.VALUE_EXTRA_KEY, value);//введенное значение в строку EditText - сколько волюты нужно конвертировать
             startActivity(intent);
         });
 

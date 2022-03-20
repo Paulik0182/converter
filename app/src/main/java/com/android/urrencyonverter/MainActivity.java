@@ -33,21 +33,21 @@ public class MainActivity extends AppCompatActivity {
             final double currency = RUB_IN_USD;
             Intent intent = new Intent(this, SecondActivity.class);
             //при открытии второго окна кладем дополнительные значения в формате: ключь, значение.
-            intent.putExtra(ResultActivity.USD_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
+            intent.putExtra(SecondActivity.USD_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
             startActivity(intent);
         });
 
         eurOpenSecondButton.setOnClickListener(v -> {
             final double currency = RUB_IN_EUR;
             Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra(ResultActivity.EUR_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
+            intent.putExtra(SecondActivity.EUR_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
             startActivity(intent);
         });
 
         chfOpenSecondButton.setOnClickListener(v -> {
             final double currency = RUB_IN_CHF;
             Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra(ResultActivity.CHF_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
+            intent.putExtra(SecondActivity.CHF_CURRENCY_EXTRA_KEY, currency);//значение - стоимость волюты
             startActivity(intent);
         });
     }

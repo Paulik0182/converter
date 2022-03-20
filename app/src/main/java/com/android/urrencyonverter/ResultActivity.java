@@ -8,12 +8,9 @@ import android.widget.TextView;
 
 public class ResultActivity extends Activity {
 
-    public static final String USD_CURRENCY_EXTRA_KEY = "USD";
-    public static final String EUR_CURRENCY_EXTRA_KEY = "EUR";
-    public static final String CHF_CURRENCY_EXTRA_KEY = "CHF";
-    public static final String VALUE_EXTRA_KEY = "value";
+    public static final String RESULT_CURRENCY_EXTRA_KEY = "result";
 
-    private TextView resultTextView = null;
+    public TextView resultTextView = null;
     private Button exitButton = null;
 
     @Override
@@ -24,23 +21,18 @@ public class ResultActivity extends Activity {
         openResultScreen();
 
         Intent intent = getIntent();//принимаем intent с первого окна
-        //проверка на наличее значений, далее если значение пришли , выполняется код
-
-        if (intent.hasExtra(USD_CURRENCY_EXTRA_KEY) && intent.hasExtra(VALUE_EXTRA_KEY)) {
-            double currency = intent.getDoubleExtra(USD_CURRENCY_EXTRA_KEY, 0d);//принимаем значения
-            double value = intent.getDoubleExtra(VALUE_EXTRA_KEY, 0d);//принимаем значения
-
+        if (intent.hasExtra(RESULT_CURRENCY_EXTRA_KEY)) {
             //присвоили переменной результат вычисления в методе convert, передали пришедшие значения в метод convert
-            double result = convert(value, currency);
+            double result = intent.getDoubleExtra(RESULT_CURRENCY_EXTRA_KEY, 0d);
             //передаем в поле полученный результат
             resultTextView.setText(String.valueOf(result));
         }
     }
 
-    //Метод принемающий строку EditText и возващает результат (проходит вычисление)
-    private double convert(double value, double currency) {
-        return value * currency;
-    }
+//    //Метод принемающий строку EditText и возващает результат (проходит вычисление)
+//    private double convert(double value, double currency) {
+//        return value * currency;
+//    }
 
     private void openResultScreen() {
         exitButton.setOnClickListener(v -> {
