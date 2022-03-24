@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/root_layout_style"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/result_second_text_view"
+        style="@style/result_text_style"
+        android:text="@string/result_conversion"
+        tools:ignore="SpUsage" />
+
+    <EditText
+        android:id="@+id/input_edit_text"
+        style="@style/color_size_style_black"
+        android:hint="@string/volute"
+        android:inputType="number" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/open_result_button"
+        style="@style/standard_button_style"
+        android:text="@string/ok"
+        app:cornerRadius="@dimen/corner_bottom_radius" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/exit_button"
+        style="@style/standard_button_style"
+        android:text="@string/exit"
+        app:cornerRadius="@dimen/corner_bottom_radius" />
+
+</LinearLayout>
