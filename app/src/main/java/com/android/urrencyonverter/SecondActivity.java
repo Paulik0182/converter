@@ -7,9 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 public class SecondActivity extends Activity {
 
     public static final String CURRENCY_EXTRA_KEY = "currency";
+    public static final String RESULT_EXTRA_KEY = "result";
+
+    private static final int RESULT_REQUEST_CODE = 100;
+
 
     private TextView resultSecondTextView = null;
     private EditText inputEditText = null;
@@ -54,12 +60,27 @@ public class SecondActivity extends Activity {
 
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra(ResultActivity.VALUE_EXTRA_KEY, resultValue);//передаем получение значение в следующий экран
-            startActivity(intent);
+            startActivityForResult(intent, RESULT_REQUEST_CODE);
         });
 
         inputEditButton.setOnClickListener(v -> {
             finish();
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RESULT_REQUEST_CODE
+                && resultCode == Activity.RESULT_OK
+                && data != null
+                && data.hasExtra(ResultActivity.VALUE_EXTRA_KEY
+        )) {
+            double result = data.getDoubleExtra(ResultActivity.VALUE_EXTRA_KEY, 0d);
+            Intent dataIntent = new Intent();
+            dataIntent.putExtra(RESULT_EXTRA_KEY, result);
+            setResult(Activity.RESULT_OK, dataIntent);
+            finish();
+        }
     }
 
     //Метод принемающий строку EditText и возващает результат (проходит вычисление)
