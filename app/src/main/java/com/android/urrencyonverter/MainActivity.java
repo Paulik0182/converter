@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        openResultScreen();
+        setListeners();
     }
 
-    private void openResultScreen() {
+    private void setListeners() {
         usaOpenSecondButton.setOnClickListener(v -> {
             final double currency = RUB_IN_USD;
             Intent intent = new Intent(this, SecondActivity.class);

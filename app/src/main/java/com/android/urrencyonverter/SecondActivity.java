@@ -24,7 +24,7 @@ public class SecondActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         initViews();
-        openResultScreen();
+        setListeners();
 
         Intent intent = getIntent();//принимаем intent с первого окна
         //проверка на наличее значений, далее если значение пришли , выполняется код
@@ -38,7 +38,7 @@ public class SecondActivity extends Activity {
 
             Intent intent1 = new Intent(this, ResultActivity.class);
             //при открытии второго окна кладем дополнительные значения в формате: ключь, значение.
-            intent.putExtra(ResultActivity.RESULT_CURRENCY_EXTRA_KEY, result);//значение - стоимость волюты
+            intent.putExtra(ResultActivity.CURRENCY_EXTRA_KEY, result);//значение - стоимость волюты
             startActivity(intent1);
         }
     }
@@ -57,7 +57,7 @@ public class SecondActivity extends Activity {
         }
     }
 
-    private void openResultScreen() {
+    private void setListeners() {
         //Создали переменную, присвоили ей значение текстового поля
         final String inputSrt = inputEditText.getText().toString();
         // Создали переменную, производим проверку введенного значения, в поле можно ввести только целое число

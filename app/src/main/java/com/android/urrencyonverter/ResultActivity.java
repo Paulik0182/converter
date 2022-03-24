@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class ResultActivity extends Activity {
 
-    public static final String RESULT_CURRENCY_EXTRA_KEY = "result";
+    public static final String CURRENCY_EXTRA_KEY = "result";
 
     public TextView resultTextView = null;
     private Button exitButton = null;
@@ -18,12 +18,12 @@ public class ResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         initViews();
-        openResultScreen();
+        setListeners();
 
         Intent intent = getIntent();//принимаем intent с первого окна
-        if (intent.hasExtra(RESULT_CURRENCY_EXTRA_KEY)) {
+        if (intent.hasExtra(CURRENCY_EXTRA_KEY)) {
             //присвоили переменной результат вычисления в методе convert, передали пришедшие значения в метод convert
-            double result = intent.getDoubleExtra(RESULT_CURRENCY_EXTRA_KEY, 0d);
+            double result = intent.getDoubleExtra(CURRENCY_EXTRA_KEY, 0d);
             //передаем в поле полученный результат
             resultTextView.setText(String.valueOf(result));
         }
@@ -34,7 +34,7 @@ public class ResultActivity extends Activity {
 //        return value * currency;
 //    }
 
-    private void openResultScreen() {
+    private void setListeners() {
         exitButton.setOnClickListener(v -> {
             finish();
         });

@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/activity_standard"
+    style="@style/root_layout_style"
     tools:context=".ResultActivity">
 
     <TextView
         android:id="@+id/currency_result_text_view"
-        style="@style/color_size_style_light_green"
+        style="@style/result_text_style"
         android:text="@string/result_conversion"
         tools:ignore="SpUsage" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/exit_button"
-        style="@style/button_style_standard"
+        style="@style/standard_button_style"
         android:text="@string/ok"
-        app:cornerRadius="@dimen/corner_radius_bottom" />
+        app:cornerRadius="@dimen/corner_bottom_radius" />
 
 </LinearLayout>

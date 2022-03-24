@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/activity_standard"
+    style="@style/root_layout_style"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/result_text_view"
-        style="@style/color_size_style_light_green"
-        android:text="@string/result_conversion"
-        tools:ignore="SpUsage" />
+        style="@style/result_text_style"
+        android:text="@string/result_conversion" />
 
     <Button
         android:id="@+id/usa_currency_open_second_button"
-        style="@style/button_style_standard"
+        style="@style/standard_button_style"
         android:text="@string/usa" />
     <Button
         android:id="@+id/eur_currency_open_second_button"
-        style="@style/button_style_standard"
+        style="@style/standard_button_style"
         android:text="@string/eur" />
     <Button
         android:id="@+id/chf_currency_open_second_button"
-        style="@style/button_style_standard"
+        style="@style/standard_button_style"
         android:text="@string/chf" />
 
 </LinearLayout>
