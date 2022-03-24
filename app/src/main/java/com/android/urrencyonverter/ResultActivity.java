@@ -8,9 +8,9 @@ import android.widget.TextView;
 
 public class ResultActivity extends Activity {
 
-    public static final String CURRENCY_EXTRA_KEY = "result";
+    public static final String VALUE_EXTRA_KEY = "value";
 
-    public TextView resultTextView = null;
+    private TextView resultTextView = null;
     private Button exitButton = null;
 
     @Override
@@ -20,19 +20,13 @@ public class ResultActivity extends Activity {
         initViews();
         setListeners();
 
-        Intent intent = getIntent();//принимаем intent с первого окна
-        if (intent.hasExtra(CURRENCY_EXTRA_KEY)) {
-            //присвоили переменной результат вычисления в методе convert, передали пришедшие значения в метод convert
-            double result = intent.getDoubleExtra(CURRENCY_EXTRA_KEY, 0d);
+        Intent intent = getIntent();//принимаем intent с SecondActivity
+        if (intent.hasExtra(VALUE_EXTRA_KEY)) {
+            double result = intent.getDoubleExtra(VALUE_EXTRA_KEY, 0d);
             //передаем в поле полученный результат
             resultTextView.setText(String.valueOf(result));
         }
     }
-
-//    //Метод принемающий строку EditText и возващает результат (проходит вычисление)
-//    private double convert(double value, double currency) {
-//        return value * currency;
-//    }
 
     private void setListeners() {
         exitButton.setOnClickListener(v -> {
@@ -42,7 +36,7 @@ public class ResultActivity extends Activity {
 
     //Метод для инициализации элементов на экране (view моделе).
     private void initViews() {
-        resultTextView = findViewById(R.id.result_text_view);
+        resultTextView = findViewById(R.id.currency_result_text_view);
         exitButton = findViewById(R.id.exit_button);
     }
 }

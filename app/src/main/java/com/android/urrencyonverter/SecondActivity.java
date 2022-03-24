@@ -9,15 +9,13 @@ import android.widget.TextView;
 
 public class SecondActivity extends Activity {
 
-    public static final String USD_CURRENCY_EXTRA_KEY = "USD";
-    public static final String EUR_CURRENCY_EXTRA_KEY = "EUR";
-    public static final String CHF_CURRENCY_EXTRA_KEY = "CHF";
-    public static final String VALUE_EXTRA_KEY = "value";
+    public static final String CURRENCY_EXTRA_KEY = "currency";
 
     private TextView resultSecondTextView = null;
     private EditText inputEditText = null;
     private Button okOpenResultButton = null;
     private Button inputEditButton = null;
+    private double currency = 0d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +27,9 @@ public class SecondActivity extends Activity {
         Intent intent = getIntent();//принимаем intent с первого окна
         //проверка на наличее значений, далее если значение пришли , выполняется код
 
-        if (intent.hasExtra(USD_CURRENCY_EXTRA_KEY) && intent.hasExtra(VALUE_EXTRA_KEY)) {
-            double currency = intent.getDoubleExtra(USD_CURRENCY_EXTRA_KEY, 0d);//принимаем значения
-            double value = intent.getDoubleExtra(VALUE_EXTRA_KEY, 0d);//принимаем значения
-
-            //присвоили переменной результат вычисления в методе convert, передали пришедшие значения в метод convert
-            double result = convert(value, currency);
-
-            Intent intent1 = new Intent(this, ResultActivity.class);
-            //при открытии второго окна кладем дополнительные значения в формате: ключь, значение.
-            intent.putExtra(ResultActivity.CURRENCY_EXTRA_KEY, result);//значение - стоимость волюты
-            startActivity(intent1);
+        if (intent.hasExtra(CURRENCY_EXTRA_KEY)) {
+            currency = intent.getDoubleExtra(CURRENCY_EXTRA_KEY, 0d);//принимаем значения, обновляем currency
         }
-    }
-
-    //Метод принемающий строку EditText и возващает результат (проходит вычисление)
-    private double convert(double value, double currency) {
-        return value * currency;
     }
 
     //Метод проверки на формат введенного значения в поле EditText
@@ -58,23 +42,29 @@ public class SecondActivity extends Activity {
     }
 
     private void setListeners() {
-        //Создали переменную, присвоили ей значение текстового поля
-        final String inputSrt = inputEditText.getText().toString();
-        // Создали переменную, производим проверку введенного значения, в поле можно ввести только целое число
-        // (если в строке будут буквы, служебные символы, компилятор выдаст ошибку. На View в поле EditText прописать
-        // строку разрешающую ввод только чисел android:inputType="number",
-        // минус данного решения - можно ввести только целое число)
-        final double value = parseDoubleString(inputSrt);
-
         okOpenResultButton.setOnClickListener(v -> {
+            //Создали переменную, присвоили ей значение текстового поля (достаем введенное значение)
+            final String inputSrt = inputEditText.getText().toString();
+            // Создали переменную, производим проверку введенного значения, в поле можно ввести только целое число
+            // (если в строке будут буквы, служебные символы, компилятор выдаст ошибку. На View в поле EditText прописать
+            // строку разрешающую ввод только чисел android:inputType="number",
+            // минус данного решения - можно ввести только целое число)
+            final double inputValue = parseDoubleString(inputSrt);//приобразуем значение в double
+            final double resultValue = convert(inputValue, currency);// считаем полученные значения
+
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra(SecondActivity.VALUE_EXTRA_KEY, value);//введенное значение в строку EditText - сколько волюты нужно конвертировать
+            intent.putExtra(ResultActivity.VALUE_EXTRA_KEY, resultValue);//передаем получение значение в следующий экран
             startActivity(intent);
         });
 
         inputEditButton.setOnClickListener(v -> {
             finish();
         });
+    }
+
+    //Метод принемающий строку EditText и возващает результат (проходит вычисление)
+    private double convert(double value, double currency) {
+        return value * currency;
     }
 
     //Метод для инициализации элементов на экране (view моделе).
